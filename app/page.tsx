@@ -1,101 +1,99 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import DemoCard from "@/components/DemoCard";
+import { containerVariants } from "@/lib/motion-variants";
+
+const demos = [
+  {
+    number: "01",
+    title: "Basics",
+    description:
+      "Foundational animation APIs: animate, variants, and AnimatePresence.",
+    tags: ["animate", "variants", "AnimatePresence"],
+    href: "/01-basics",
+    status: "ready" as const,
+  },
+  {
+    number: "02",
+    title: "Gestures",
+    description: "Interactive gestures: hover, tap, drag, and useMotionValue.",
+    tags: ["whileHover", "whileTap", "drag", "useMotionValue"],
+    href: "/02-gestures",
+    status: "wip" as const,
+  },
+  {
+    number: "03",
+    title: "Layout",
+    description: "Shared layout animations and seamless layout transitions.",
+    tags: ["layout", "layoutId", "LayoutGroup"],
+    href: "/03-layout",
+    status: "wip" as const,
+  },
+  {
+    number: "04",
+    title: "Scroll",
+    description:
+      "Scroll-driven animations with useScroll, useTransform, and whileInView.",
+    tags: ["useScroll", "useTransform", "whileInView"],
+    href: "/04-scroll",
+    status: "wip" as const,
+  },
+  {
+    number: "05",
+    title: "Page Transitions",
+    description: "Smooth route-level transitions with AnimatePresence.",
+    tags: ["AnimatePresence", "usePathname", "exit"],
+    href: "/05-page-transition",
+    status: "wip" as const,
+  },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const shouldReduceMotion = useReducedMotion();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="min-h-screen max-w-3xl mx-auto px-6 py-16">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-16"
+      >
+        <div className="text-accent font-mono text-xs tracking-widest mb-4">
+          ~/motion-lab
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <h1 className="text-4xl font-bold font-mono text-text-primary mb-3">
+          Motion Lab
+        </h1>
+        <p className="text-text-muted text-sm">
+          A Framer Motion learning playground &mdash; from basics to advanced
+          patterns.
+        </p>
+      </motion.div>
+
+      {/* Cards — container uses staggerChildren to orchestrate card entries */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-4"
+      >
+        {demos.map((demo) => (
+          <DemoCard key={demo.number} {...demo} />
+        ))}
+      </motion.div>
+
+      {/* Footer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9, duration: 0.4 }}
+        className="mt-16 pt-6 border-t border-border text-text-muted text-xs font-mono"
+      >
+        Built with Next.js 14 + Framer Motion &middot; {new Date().getFullYear()}
+      </motion.div>
+    </main>
   );
 }

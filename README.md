@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Motion Lab
 
-## Getting Started
+A Framer Motion learning playground and portfolio showcase. Each page covers a distinct animation concept with interactive demos, annotated code, and core concept callouts.
 
-First, run the development server:
+**Stack:** Next.js 14 (App Router) · TypeScript · Tailwind CSS · Framer Motion
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Pages
+
+| Route | Stage | Description |
+|-------|-------|-------------|
+| `/` | — | Homepage with stagger-animated navigation cards |
+| `/01-basics` | Basics | `animate`, `variants`, `AnimatePresence` |
+| `/02-gestures` | Gestures | `whileHover`, `whileTap`, `drag`, `useMotionValue` |
+| `/03-layout` | Layout | `layout`, `layoutId`, `LayoutGroup` |
+| `/04-scroll` | Scroll | `useScroll`, `useTransform`, `whileInView` |
+| `/05-page-transition` | Page Transitions | `AnimatePresence` with `usePathname` |
+
+## Project Structure
+
+```
+app/                           # Next.js App Router pages
+  page.tsx                     # Homepage — stagger card list
+  01-basics/page.tsx           # Basics (fully implemented)
+  02-gestures/page.tsx         # Placeholder
+  03-layout/page.tsx           # Placeholder
+  04-scroll/page.tsx           # Placeholder
+  05-page-transition/page.tsx  # Placeholder
+
+components/
+  DemoCard.tsx              # Navigation card on homepage
+  DemoSection.tsx           # Demo container: effect + code + concepts
+  CodeBlock.tsx             # Syntax-highlighted code (prism-react-renderer)
+  demos/
+    BasicAnimateDemo.tsx    # animate prop — toggle between two states
+    VariantsDemo.tsx        # stagger variants — parent orchestrates children
+    AnimatePresenceDemo.tsx # exit animation on unmount
+
+lib/
+  motion-variants.ts        # All Variants definitions, centralised
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dev
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev     # http://localhost:3000
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Dark terminal aesthetic — `#0a0a0a` background, `#22c55e` accent, Geist Mono typeface.
+All animations respect `prefers-reduced-motion` via `useReducedMotion()`.
