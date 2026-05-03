@@ -1,3 +1,22 @@
+/*
+ * 阶段五：页面过渡
+ *
+ * 理论目标：
+ * - 掌握 AnimatePresence 在路由层面的使用
+ * - 理解不同页面用不同进出动效的实现方式
+ * - 掌握 transition 期间滚动位置的处理
+ * - 理解 exit 动画的 timing 问题
+ *
+ * 实战目标：
+ * - 页面之间切换有 smooth 过渡动画
+ * - 不同路由有不同的进出方向
+ * - 过渡期间内容不闪烁
+ *
+ * 完成标志：
+ * - 能实现完整的 page transition 系统
+ * - 不同页面有不同动效，滚动位置正确处理
+ */
+
 import Link from "next/link";
 
 export default function PageTransitionPage() {

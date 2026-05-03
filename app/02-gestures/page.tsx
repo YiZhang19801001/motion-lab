@@ -1,3 +1,23 @@
+/*
+ * 阶段二：手势与交互
+ *
+ * 理论目标：
+ * - 掌握 whileHover / whileTap / whileFocus
+ * - 理解 drag prop 和 dragConstraints
+ * - 理解 useMotionValue 是什么，和 state 有什么区别
+ * - 掌握 useTransform 如何映射 motion value
+ * - 理解 useSpring 为什么比普通 animate 更"物理"
+ *
+ * 实战目标：
+ * - 卡片 hover 时轻微 3D 倾斜（useMotionValue + useTransform 跟踪鼠标）
+ * - 点击时 scale down
+ * - drag 时可在容器内自由拖动，有 spring 回弹
+ *
+ * 完成标志：
+ * - 能解释 useMotionValue 和 useState 的本质区别
+ *   （为什么 motion value 不触发 re-render）
+ */
+
 import Link from "next/link";
 
 export default function GesturesPage() {

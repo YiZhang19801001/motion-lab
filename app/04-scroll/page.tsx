@@ -1,3 +1,21 @@
+/*
+ * 阶段四：Scroll 动效
+ *
+ * 理论目标：
+ * - 掌握 useScroll 和 scrollYProgress
+ * - 理解 useTransform 在 scroll 场景的应用
+ * - 掌握 whileInView 的 threshold 和 margin 配置
+ * - 理解 scroll-linked animation 和 scroll-triggered animation 的区别
+ *
+ * 实战目标：
+ * - Parallax 效果：scroll 时不同元素以不同速度移动
+ * - Progress bar：页面顶部显示阅读进度
+ * - 元素进入视口时的 stagger 动画
+ *
+ * 完成标志：
+ * - 能不查文档实现一个 scroll-linked 的 parallax 效果
+ */
+
 import Link from "next/link";
 
 export default function ScrollPage() {

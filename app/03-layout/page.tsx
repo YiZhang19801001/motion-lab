@@ -1,3 +1,22 @@
+/*
+ * 阶段三：Layout Animation
+ *
+ * 理论目标：
+ * - 理解 layout prop 的工作原理（FLIP 技术）
+ * - 掌握 layoutId 实现 shared element transition
+ * - 理解 useScroll / useScrollMotionValue
+ * - 区分 useInView 和 whileInView 的使用场景
+ * - 掌握 MotionConfig 统一配置
+ *
+ * 实战目标：
+ * - Tag 筛选功能，筛选时卡片用 layout animation 重新排列
+ * - 点击卡片，用 layoutId 实现展开成详情页的 shared element transition
+ *
+ * 完成标志：
+ * - 能解释 FLIP（First Last Invert Play）是什么
+ * - 能解释为什么 layout animation 不会触发昂贵的 layout 计算
+ */
+
 import Link from "next/link";
 
 export default function LayoutPage() {
