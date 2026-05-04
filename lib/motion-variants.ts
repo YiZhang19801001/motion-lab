@@ -82,6 +82,17 @@ export const presenceVariants: Variants = {
   },
 };
 
+// ===== 02-gestures: section fade-in =====
+
+export const gestureSectionVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
+
 // ===== Shared utilities =====
 
 export const fadeInVariants: Variants = {

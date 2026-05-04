@@ -20,7 +20,7 @@ const demos = [
     description: "Interactive gestures: hover, tap, drag, and useMotionValue.",
     tags: ["whileHover", "whileTap", "drag", "useMotionValue"],
     href: "/02-gestures",
-    status: "wip" as const,
+    status: "ready" as const,
   },
   {
     number: "03",

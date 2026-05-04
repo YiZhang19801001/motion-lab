@@ -122,7 +122,7 @@ animation and scroll position is handled correctly.
 ## Progress
 
 - [x] Stage 1: Core Concepts
-- [ ] Stage 2: Gestures & Interaction
+- [x] Stage 2: Gestures & Interaction
 - [ ] Stage 3: Layout Animation
 - [ ] Stage 4: Scroll Animations
 - [ ] Stage 5: Page Transitions
