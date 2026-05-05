@@ -93,6 +93,14 @@ export const gestureSectionVariants: Variants = {
   },
 };
 
+// ===== 03-layout: card expand overlay =====
+
+export const overlayVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.15 } },
+};
+
 // ===== Shared utilities =====
 
 export const fadeInVariants: Variants = {

@@ -18,6 +18,58 @@
  */
 
 import Link from "next/link";
+import DemoSection from "@/components/DemoSection";
+import LayoutFilterDemo from "@/components/demos/LayoutFilterDemo";
+import ExpandCardDemo from "@/components/demos/ExpandCardDemo";
+
+const filterCode = `// layout prop: when this element's position changes (e.g. after filtering),
+// animate smoothly to its new position instead of jumping.
+// AnimatePresence mode="popLayout" coordinates enter/exit with layout shifts.
+<LayoutGroup>
+  <AnimatePresence mode="popLayout">
+    {filtered.map((item) => (
+      <motion.div
+        key={item.id}
+        layout
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+      />
+    ))}
+  </AnimatePresence>
+
+  {/* layoutId on the tab indicator: the green pill slides between buttons.
+      Two <span> elements share one layoutId — Framer Motion treats them
+      as the same element moving, not two separate fade in/out events. */}
+  {activeTag === tag && (
+    <motion.span layoutId="tab-indicator" className="absolute inset-0 bg-accent rounded" />
+  )}
+</LayoutGroup>`;
+
+const expandCode = `// layout on each card: when the card grows (user clicks it),
+// AND when other cards get pushed down to make room —
+// all of it animates smoothly via FLIP (no layout recalculation).
+<motion.div layout transition={{ type: "spring", stiffness: 280, damping: 28 }}>
+  <motion.p layout>{card.title}</motion.p>
+
+  {/* AnimatePresence fades the body text in/out independently.
+      The card's size change is handled by layout — two separate concerns. */}
+  <AnimatePresence>
+    {isSelected && (
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {card.body}
+      </motion.p>
+    )}
+  </AnimatePresence>
+</motion.div>
+
+// Key insight: layout (same element growing in place) vs layoutId
+// (two different elements sharing an identity across DOM positions).
+// For in-place expansion, layout is the right tool.`;
 
 export default function LayoutPage() {
   return (
@@ -34,31 +86,27 @@ export default function LayoutPage() {
       <h1 className="text-3xl font-bold font-mono text-text-primary mb-2">
         Layout
       </h1>
-      <p className="text-text-muted text-sm mb-8">
-        Shared layout animations and seamless layout transitions.
+      <p className="text-text-muted text-sm mb-14">
+        FLIP-based layout animation and shared element transitions with layoutId.
       </p>
 
-      <div className="border border-border rounded-lg p-8 text-center">
-        <p className="text-text-muted text-sm font-mono">
-          Coming soon &mdash; planned demos:
-        </p>
-        <ul className="mt-4 space-y-1 text-text-muted text-xs font-mono text-left inline-block">
-          <li>
-            <span className="text-accent mr-2">›</span>layout prop basics
-          </li>
-          <li>
-            <span className="text-accent mr-2">›</span>layoutId shared element
-            transition
-          </li>
-          <li>
-            <span className="text-accent mr-2">›</span>LayoutGroup for
-            coordinated layouts
-          </li>
-          <li>
-            <span className="text-accent mr-2">›</span>Reorder list
-          </li>
-        </ul>
-      </div>
+      <DemoSection
+        title="3.1 — layout + LayoutGroup"
+        description="The layout prop makes elements animate to their new position when the list changes. The tab indicator uses layoutId to slide between buttons as a single moving element."
+        code={filterCode}
+        concepts={["layout", "LayoutGroup", "layoutId", "AnimatePresence mode='popLayout'"]}
+      >
+        <LayoutFilterDemo />
+      </DemoSection>
+
+      <DemoSection
+        title="3.2 — layout In-Place Expansion"
+        description="Clicking a card expands it in place. The layout prop handles the size change via FLIP — other cards animate out of the way automatically. AnimatePresence fades the body text independently."
+        code={expandCode}
+        concepts={["layout", "FLIP", "AnimatePresence", "layout vs layoutId"]}
+      >
+        <ExpandCardDemo />
+      </DemoSection>
     </main>
   );
 }

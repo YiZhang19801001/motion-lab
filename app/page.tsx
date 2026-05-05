@@ -28,7 +28,7 @@ const demos = [
     description: "Shared layout animations and seamless layout transitions.",
     tags: ["layout", "layoutId", "LayoutGroup"],
     href: "/03-layout",
-    status: "wip" as const,
+    status: "ready" as const,
   },
   {
     number: "04",
